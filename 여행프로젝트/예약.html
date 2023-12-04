@@ -108,9 +108,27 @@ $check.addEventListener('click', function (event) {
             '</br>휴대폰번호: ' + phoneNumber +
             '<br/>선택한 옵션: ' + selectedOption +
             '<br/>예약 날짜: ' + reservationDate,
-        icon: "success"
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '확정',
+        cancelButtonText: '취소'
+
+        }).then(result => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "예약 확정",
+                    html: '예약자: ' + personName +
+                            '</br>휴대폰번호: ' + phoneNumber +
+                            '<br/>선택한 옵션: ' + selectedOption +
+                            '<br/>예약 날짜: ' + reservationDate,
+                        icon: "success",
+                    })
+                }
+            })
     });
-});
+
 
 
 var realList = [];
