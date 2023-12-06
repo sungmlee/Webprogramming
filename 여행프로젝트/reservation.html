@@ -66,7 +66,7 @@
     <form method ="get">
         <fieldset>
             <legend> 예약자 정보 </legend>
-            <label for ="sub"> 예약자: </label>
+            <label for="name"> 예약자: </label>
             <input type="text" name ="person" id="sub"><br>
             <label for = "phone">휴대폰 :</label>
             <input type ="tel" name ="tel" id = "phone" placeholder = "01*-000*-0000"/><br> 
@@ -75,7 +75,7 @@
         </fieldset>
         <fieldset>
             <legend> 일자 선택</legend>
-            <input type="date" name ="reservation_date"/>
+            <input type="date" name ="reservation_date" id ="date"/>
         </fieldset>
         <br>
         <input type="submit" value="예약" id="check"/>
@@ -89,32 +89,31 @@
 
 
 const $check = document.querySelector('#check');
+const $sub = document.querySelector('#sub');
+const $phone = document.querySelector('#phone');
+const $date = document.querySelector('#date');
+
 $check.addEventListener('click', function (event) {
     event.preventDefault(); 
 
-    
-    var personName = document.getElementById('sub').value;
-    var phoneNumber = document.getElementById('phone').value;
-
-    
+    var personName = $sub.value;
+    var phoneNumber = $phone.value;
     var selectedOption = listBox.options[listBox.selectedIndex].value;
-
-    
-    var reservationDate = document.getElementsByName('reservation_date')[0].value;
+    var reservationDate = $date.value;
 
     swal.fire({
-        title: "예약 완료!",
+        title: "예약 전 확인",
         html: '예약자: ' + personName + 
             '</br>휴대폰번호: ' + phoneNumber +
             '<br/>선택한 옵션: ' + selectedOption +
             '<br/>예약 날짜: ' + reservationDate,
         icon: "question",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#3DFF92',
+        cancelButtonColor: '#B9062F',
         confirmButtonText: '확정',
-        cancelButtonText: '취소'
-
+        cancelButtonText: '돌아가기'
+        
         }).then(result => {
             if (result.isConfirmed) {
                 Swal.fire({
@@ -248,9 +247,9 @@ function displayPlaces(places) {
 
         realList[i] = places[i].place_name;
         var option = document.createElement('option');
-        option.value = realList[i];
-        option.text = realList[i];
+        option.textContent = realList[i];
         listBox.add(option);
+        
     }
 
     // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
