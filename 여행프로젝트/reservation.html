@@ -78,8 +78,8 @@
             <input type="date" name ="reservation_date" id ="date"/>
         </fieldset>
         <br>
-        <input type="submit" value="예약" id="check"/>
-        <input type="reset" value="취소"/>
+        <button  value="예약" id="check">예약</button>
+        <button  value="취소" id="reset">취소</button>
     </form>
 </div>
 
@@ -92,8 +92,9 @@ const $check = document.querySelector('#check');
 const $sub = document.querySelector('#sub');
 const $phone = document.querySelector('#phone');
 const $date = document.querySelector('#date');
+const $reset = document.querySelector('#reset');
 
-$check.addEventListener('click', function (event) {
+$check.addEventListener('click', (event) => {
     event.preventDefault(); 
 
     var personName = $sub.value;
@@ -128,7 +129,13 @@ $check.addEventListener('click', function (event) {
             })
     });
 
+$reset.addEventListener('click',  (event) => {
+    event.preventDefault();
 
+    $sub.value ='';
+    $phone.value = '';
+    $date.value = '';
+});
 
 var realList = [];
 
