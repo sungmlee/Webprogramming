@@ -36,8 +36,8 @@ function previousSlide() {
 document.addEventListener("keydown", function (event) {
   if (event.key === "ArrowLeft") {
     nextSlide();
-     // 왼쪽 화살표 키를 누르면 이전 슬라이드로 이동
+     
   } else if (event.key === "ArrowRight") {
-    previousSlide();// 오른쪽 화살표 키를 누르면 다음 슬라이드로 이동
+    previousSlide();
   }
 });
