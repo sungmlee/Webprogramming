@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>버튼을 클릭하여 현재 위치의 주소를 확인하세요:</p>
+<button onclick="showCurrentLocation()">현재 위치 확인</button>
+
+<p id="locationDisplay"></p>
+
+<script>
+// 현재 위치를 가져와 화면에 표시하는 함수
+function showCurrentLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(displayAddress, displayError);
+  } else { 
+    document.getElementById("locationDisplay").innerHTML = "이 브라우저는 지리적 위치를 지원하지 않습니다.";
+  }
+}
+
+// 위치 정보를 받아 주소를 화면에 표시하는 함수
+function displayAddress(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "https://nominatim.openstreetmap.org/reverse?format=json&lat=" + latitude + "&lon=" + longitude, true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      var response = JSON.parse(xhr.responseText);
+      document.getElementById("locationDisplay").innerHTML = "주소: " + response.display_name;
+    }
+  }
+  xhr.send();
+}
+
+// 위치 정보를 가져오는데 실패했을 때의 에러를 화면에 표시하는 함수
+function displayError(error) {
+  var errorMessage = "위치 정보를 가져오는데 오류가 발생했습니다.";
+  document.getElementById("locationDisplay").innerHTML = errorMessage;
+}
+</script>
+
+</body>
+</html>
