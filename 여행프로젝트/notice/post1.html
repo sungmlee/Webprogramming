@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유용한 기능 모음</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>공지사항</strong>
+        </div>
+        <div class="board_view_wrap">
+            <div class="board_view">
+                <div class="title">유용한 기능 모음</div>
+                <div class="info">
+                    <dl>
+                        <dt>글쓴이</dt>
+                        <dd>관리자</dd>
+                    </dl>
+                    <dl>
+                        <dt>작성일</dt>
+                        <dd>2023.11.23</dd>
+                    </dl>
+                    <dl>
+                        <dt>조회</dt>
+                        <dd>11</dd>
+                    </dl>
+                </div>
+                <div class="memo">
+                    <button id="one">현재 위치 날씨</button>
+                    <button id="two">필요한 물건 메모</button>
+                </div>
+            </div>
+            <div class="bt_wrap">
+                <a href="list.html" class="on"><center>목록</center></a>
+                <a href="X"><center>수정</center></a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const $oneButton = document.querySelector('#one');
+        const $twoButton = document.querySelector('#two');
+        
+        $oneButton.addEventListener('click' , () => {
+            location.href='../weather.html'
+        });
+        $twoButton.addEventListener('click', () => {
+            location.href='../memo.html'
+        });
+        
+    </script>
+</body>
+</html>
