@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>필요한 물건 메모</title>
+    <style>
+        div.left {
+            width: 50%;
+            float: left;
+        }
+
+        div.right {
+            width: 50%;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left">
+        <h1>참고자료</h1>
+        <img src="./image1.png">
+    </div>
+    <div class="right">
+        <h1>필요한 물건을 메모하세요</h1>
+        <form id="form">
+            <input type="text">
+            <button>입력</button>
+        </form>
+        <div id="logs"></div>
+    </div>
+    <script>
+        const $input = document.querySelector('input');
+        const $button = document.querySelector('button');
+        const $logs = document.querySelector('#logs');
+        const $form = document.querySelector('#form');
+
+        let word = '';
+        let index = 0;
+
+
+        const onInput = (event) => {
+            word = event.target.value;
+        };
+
+        $input.addEventListener('input', onInput);
+        $form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (word) {
+                index++;
+                word = index + '. ' + word;
+                $logs.append(`${word} `, document.createElement('br'));
+                $input.value = '';
+                $input.focus();
+                word = '';
+            }
+        });
+        
+    </script>
+</body>
+
+</html>

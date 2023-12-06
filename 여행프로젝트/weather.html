@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>현재 위치 날씨 </title>
+
+</head>
+
+<body>
+    <div id="map" style="width:100%;height:350px;"></div>
+    <fieldset>
+    <h1>오늘의 날씨</h1>
+    <b id="weather"></b>
+    <b id="temperature"></b>
+    </fieldset>
+   
+
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=08ca90ec04016400446219becdab4e2a"></script>
+    <script>
+
+        var latitude = 0;
+        var longitude = 0;
+        var $weather = document.querySelector('#weather');
+        var $temperature = document.querySelector('#temperature');
+
+        navigator.geolocation.getCurrentPosition(successFunction, failFunction);
+
+        function successFunction(location) {
+            latitude = location.coords.latitude;
+            longitude = location.coords.longitude;
+            
+            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                mapOption = {
+                    center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
+                    level: 3 // 지도의 확대 레벨
+                };
+
+            var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+            // 지도를 클릭한 위치에 표출할 마커입니다
+            var marker = new kakao.maps.Marker({
+                // 지도 중심좌표에 마커를 생성합니다 
+                position: map.getCenter()
+            });
+
+            // 지도에 마커를 표시합니다
+            marker.setMap(map);
+
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=d36319edbd98d12e7f57449f4015bbc8`)
+                .then((response) => response.json())
+                .then((data) => {
+                    currentweather=data;
+                    console.log(currentweather);
+                    console.log(currentweather.weather[0].main);
+                    $weather.textContent = '현재 날씨 = ' + currentweather.weather[0].main;
+                    $temperature.textContent = '현재온도 = ' + Math.ceil(Number(currentweather.main.temp - 273.15)) + '°C';
+                })
+        }
+
+        function failFunction() {
+            alert('현재 위치 정보 없음');
+        }
+
+    </script>
+</body>
+
+</html>
