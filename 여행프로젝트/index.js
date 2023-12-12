@@ -33,7 +33,7 @@ function previousSlide() {
   showSlide(currentSlide - 1);
 }
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") {
     nextSlide();
      
