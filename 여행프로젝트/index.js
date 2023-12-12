@@ -34,6 +34,7 @@ function previousSlide() {
 }
 
 document.addEventListener("keydown", (event) => {
+  event.preventDefault();
   if (event.key === "ArrowLeft") {
     nextSlide();
      
