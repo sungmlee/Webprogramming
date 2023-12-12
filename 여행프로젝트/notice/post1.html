@@ -31,6 +31,7 @@
                 <div class="memo">
                     <button id="one">현재 위치 날씨</button>
                     <button id="two">필요한 물건 메모</button>
+                    <button id="three">여행 달력</button>
                 </div>
             </div>
             <div class="bt_wrap">
@@ -42,6 +43,7 @@
     <script>
         const $oneButton = document.querySelector('#one');
         const $twoButton = document.querySelector('#two');
+        const $threeButton = document.querySelector('#three');
         
         $oneButton.addEventListener('click' , () => {
             location.href='../weather.html'
@@ -49,7 +51,9 @@
         $twoButton.addEventListener('click', () => {
             location.href='../memo.html'
         });
-        
+        $threeButton.addEventListener('click' , () => {
+            location.href='../Travel Calendar.html';
+        });
     </script>
 </body>
 </html>
