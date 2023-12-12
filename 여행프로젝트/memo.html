@@ -27,7 +27,8 @@
         <h1>필요한 물건을 메모하세요</h1>
         <form id="form">
             <input type="text">
-            <button>입력</button>
+            <button id ="ok">입력</button>
+            <button id = "reset">초기화</button>
         </form>
         <div id="logs"></div>
     </div>
@@ -36,7 +37,8 @@
         const $button = document.querySelector('button');
         const $logs = document.querySelector('#logs');
         const $form = document.querySelector('#form');
-
+        const $reset = document.querySelector('#reset');
+        
         let word = '';
         let index = 0;
 
@@ -57,7 +59,11 @@
                 word = '';
             }
         });
-        
+              
+        $reset.addEventListener('click' , (event) => {
+            $logs.textContent = '';
+        });
+
     </script>
 </body>
 
