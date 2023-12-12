@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>여행 달력</title>
+    <style>
+        .calendar-month {
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .memo {
+            margin-top: 10px;
+        }
+        .memo-list {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>여행 달력</h2>
+
+    <div id="calendar-container">
+        <!-- 각 월의 달력이 여기에 생성됩니다 -->
+    </div>
+
+    <div class="memo">
+        <textarea id="memoArea" rows="4" cols="50" placeholder="메모를 입력하세요"></textarea>
+        <button onclick="saveMemo()">메모 저장</button>
+    </div>
+
+    <div class="memo-list" id="memoList">
+        <h3>저장된 메모:</h3>
+        <!-- 저장된 메모가 여기에 표시됩니다 -->
+    </div>
+
+    <script>
+        function createMonthCalendar(year, month) {
+            var daysInMonth = new Date(year, month, 0).getDate();
+            var firstDay = new Date(year, month - 1, 1).getDay();
+            var calendar = document.createElement('table');
+            var header = '<tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr>';
+            calendar.innerHTML = header;
+
+            var date = 1;
+            for (var i = 0; i < 6; i++) {
+                var row = document.createElement('tr');
+                for (var j = 0; j < 7; j++) {
+                    if (i === 0 && j < firstDay) {
+                        row.appendChild(document.createElement('td'));
+                    } else if (date > daysInMonth) {
+                        break;
+                    } else {
+                        var cell = document.createElement('td');
+                        cell.innerText = date;
+                        row.appendChild(cell);
+                        date++;
+                    }
+                }
+                calendar.appendChild(row);
+                if (date > daysInMonth) {
+                    break;
+                }
+            }
+
+            var calendarContainer = document.createElement('div');
+            calendarContainer.className = 'calendar-month';
+            calendarContainer.innerHTML = '<h3>' + year + '년 ' + month + '월</h3>';
+            calendarContainer.appendChild(calendar);
+
+            return calendarContainer;
+        }
+
+        function createYearCalendar(year) {
+            var calendarContainer = document.getElementById('calendar-container');
+            calendarContainer.innerHTML = '';
+            for (var month = 1; month <= 12; month++) {
+                calendarContainer.appendChild(createMonthCalendar(year, month));
+            }
+        }
+
+        function saveMemo() {
+            var memo = document.getElementById('memoArea').value;
+            var memoList = document.getElementById('memoList');
+            var memoEntry = document.createElement('p');
+            memoEntry.innerText = memo;
+            memoList.appendChild(memoEntry);
+
+            // 텍스트 영역 초기화
+            document.getElementById('memoArea').value = '';
+        }
+
+        // 현재 해의 달력 생성
+        var today = new Date();
+        createYearCalendar(today.getFullYear());
+    </script>
+</body>
+</html>
