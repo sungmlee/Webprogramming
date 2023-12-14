@@ -31,7 +31,7 @@
     <h2>여행 달력</h2>
 
     <div id="calendar-container">
-        <!-- 각 월의 달력이 여기에 생성됩니다 -->
+        
     </div>
 
     <div class="memo">
@@ -41,7 +41,7 @@
 
     <div class="memo-list" id="memoList">
         <h3>저장된 메모:</h3>
-        <!-- 저장된 메모가 여기에 표시됩니다 -->
+        
     </div>
 
     <script>
@@ -96,11 +96,11 @@
             memoEntry.innerText = memo;
             memoList.appendChild(memoEntry);
 
-            // 텍스트 영역 초기화
+            
             document.getElementById('memoArea').value = '';
         }
 
-        // 현재 해의 달력 생성
+        
         var today = new Date();
         createYearCalendar(today.getFullYear());
     </script>
