@@ -12,7 +12,7 @@
   <p id="locationDisplay"></p>
   
   <script>
-  // 현재 위치를 가져와 화면에 표시하는 함수
+  
   function showCurrentLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(displayAddress, displayError);
@@ -21,7 +21,7 @@
     }
   }
   
-  // 위치 정보를 받아 주소를 화면에 표시하는 함수
+
   function displayAddress(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
@@ -37,7 +37,7 @@
     xhr.send();
   }
   
-  // 위치 정보를 가져오는데 실패했을 때의 에러를 화면에 표시하는 함수
+  
   function displayError(error) {
     var errorMessage = "위치 정보를 가져오는데 오류가 발생했습니다.";
     document.getElementById("locationDisplay").innerHTML = errorMessage;
